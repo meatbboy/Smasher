@@ -1,0 +1,11 @@
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Smasher.exe
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Smasher.pdb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.csprojResolveAssemblyReference.cache
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.exe
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.pdb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Content\Background.xnb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Content\walk.xnb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Content\appear.xnb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Content\kill.xnb
+E:\Учёба\КУРСАЧ 3 курс 2 сем\Smasher\Smasher\Smasher\bin\x86\Debug\Content\mainmenu.xnb

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smasher", "Smasher\Smasher\Smasher.csproj", "{A74917FD-08F5-4817-96F7-32ABF8842159}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SmasherContent", "Smasher\SmasherContent\SmasherContent.contentproj", "{BC55094D-7C43-4014-8DD1-11E49B1219EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A74917FD-08F5-4817-96F7-32ABF8842159}.Debug|x86.ActiveCfg = Debug|x86
+		{A74917FD-08F5-4817-96F7-32ABF8842159}.Debug|x86.Build.0 = Debug|x86
+		{A74917FD-08F5-4817-96F7-32ABF8842159}.Release|x86.ActiveCfg = Release|x86
+		{A74917FD-08F5-4817-96F7-32ABF8842159}.Release|x86.Build.0 = Release|x86
+		{BC55094D-7C43-4014-8DD1-11E49B1219EE}.Debug|x86.ActiveCfg = Debug|x86
+		{BC55094D-7C43-4014-8DD1-11E49B1219EE}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
