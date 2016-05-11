@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Threading;
 
 namespace Smasher
 {
@@ -46,6 +45,8 @@ namespace Smasher
         private int mouseY;
         private BoundingBox bbMouse;
 
+        Random random = new Random();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -64,7 +65,6 @@ namespace Smasher
         /// </summary>
         protected override void Initialize()
         {
-
             lastMouseState = Mouse.GetState();
             base.Initialize();
         }
@@ -111,81 +111,27 @@ namespace Smasher
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
          {
- 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+ 
             if (menuState == false)
             {
                 Pause();
                 if (!paused)
                 {
-                    if (lastMouseState.LeftButton == ButtonState.Released &&
-                        Mouse.GetState().LeftButton == ButtonState.Pressed)
-                    {
-                        Collision();
-                        if (bbMouse.Intersects(sprite.Bounding))
-                        {
-                            if (isKillProc == false)
-                            {
-                                isKill = true;
-                            }
-                        }
-                        if (bbMouse.Intersects(sprite1.Bounding))
-                        {
-                            if (isKillProc1 == false)
-                            {
-                                isKill1 = true;
-                            }
-                        }
-                    }
-                    if (isKill && isKill1 == false)
-                    {
-                        sprite1.Update(gameTime);
-                    }
-                    if (isKill1 && isKill == false)
-                    {
-                        sprite.Update(gameTime);
-                    }
-                    if (isKill == false && isKill1 == false)
-                    {
-                        sprite.Update(gameTime);
-                        sprite1.Update(gameTime);
-                    }
+                    Kill(gameTime);
 
                     lastMouseState = Mouse.GetState();
 
                     if (isKill)
                     {
-                        if (sprite.IsWalk == false)
-                        {
-                            isKillProc = true;
-                            sprite.UpdateKill(gameTime);
-                        }
-                        else
-                        {
-                            isKill = false;
-                            sprite.IsWalk = false;
-                            sprite.Position = new Vector2(10, 200);
-                            isKillProc = false;
-                        }
+                        UpdateKill(gameTime, sprite, ref isKillProc, ref isKill, -100, random.Next(50, 200));
                     }
 
                     if (isKill1)
                     {
-                        if (sprite1.IsWalk == false)
-                        {
-                            isKillProc1 = true;
-                            sprite1.UpdateKill(gameTime);
-                        }
-                        else
-                        {
-                            isKill1 = false;
-                            sprite1.IsWalk = false;
-                            sprite1.Position = new Vector2(10, 310);
-                            isKillProc1 = false;
-                        }
+                        UpdateKill(gameTime, sprite1, ref isKillProc1, ref isKill1, -80, random.Next(320, 400));
                     }
                 }
             }
@@ -218,26 +164,7 @@ namespace Smasher
 
             if (!menuState)
             {
-                if (isKill && isKill1 == false)
-                {
-                    sprite.DrawKill(spriteBatch);
-                    sprite1.Draw(spriteBatch);
-                }
-                if (isKill1 && isKill == false)
-                {
-                    sprite1.DrawKill(spriteBatch);
-                    sprite.Draw(spriteBatch);
-                }
-                if (isKill && isKill1)
-                {
-                    sprite.DrawKill(spriteBatch);
-                    sprite1.DrawKill(spriteBatch);
-                }
-                if (isKill == false && isKill1 == false)
-                {
-                    sprite.Draw(spriteBatch);
-                    sprite1.Draw(spriteBatch);
-                }
+                DrawSprite();
             }
             else
             {
@@ -267,6 +194,82 @@ namespace Smasher
             mouseY = mouseState.Y;
             bbMouse.Min = new Vector3(mouseX - 3, mouseY - 3, 0);
             bbMouse.Max = new Vector3(mouseX + 3, mouseY + 3, 0);
+        }
+
+        public void DrawSprite()
+        {
+            if (isKill && isKill1 == false)
+            {
+                sprite.DrawKill(spriteBatch);
+                sprite1.Draw(spriteBatch);
+            }
+            if (isKill1 && isKill == false)
+            {
+                sprite1.DrawKill(spriteBatch);
+                sprite.Draw(spriteBatch);
+            }
+            if (isKill && isKill1)
+            {
+                sprite.DrawKill(spriteBatch);
+                sprite1.DrawKill(spriteBatch);
+            }
+            if (isKill == false && isKill1 == false)
+            {
+                sprite.Draw(spriteBatch);
+                sprite1.Draw(spriteBatch);
+            }
+        }
+
+        public void Kill(GameTime gameTime)
+        {
+            if (lastMouseState.LeftButton == ButtonState.Released &&
+                Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                Collision();
+                if (bbMouse.Intersects(sprite.Bounding))
+                {
+                    if (isKillProc == false)
+                    {
+                        isKill = true;
+                    }
+                }
+                if (bbMouse.Intersects(sprite1.Bounding))
+                {
+                    if (isKillProc1 == false)
+                    {
+                        isKill1 = true;
+                    }
+                }
+            }
+            if (isKill && isKill1 == false)
+            {
+                sprite1.Update(gameTime);
+            }
+            if (isKill1 && isKill == false)
+            {
+                sprite.Update(gameTime);
+            }
+            if (isKill == false && isKill1 == false)
+            {
+                sprite.Update(gameTime);
+                sprite1.Update(gameTime);
+            }
+        }
+
+        public void UpdateKill(GameTime gameTime, Animation sprite, ref bool isKillProc, ref bool isKill, int x, int y)
+        {
+            if (sprite.IsWalk == false)
+            {
+                isKillProc = true;
+                sprite.UpdateKill(gameTime);
+            }
+            else
+            {
+                isKill = false;
+                sprite.IsWalk = false;
+                sprite.Position = new Vector2(x, y);
+                isKillProc = false;
+            }
         }
     }
 }

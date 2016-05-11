@@ -1,5 +1,4 @@
 Content\Background.xnb
 Content\walk.xnb
-Content\appear.xnb
 Content\kill.xnb
 Content\mainmenu.xnb

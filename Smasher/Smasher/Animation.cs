@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Smasher
 {
-    class Animation 
+    public class Animation 
     {
         private Texture2D texture;
         private Texture2D killTexture;
@@ -57,7 +57,7 @@ namespace Smasher
         {
             texture = newTexture;
             killTexture = newKillTexture;
-            position = newPosition;
+            position = newPosition; 
             frameHeight = newFrameHeight;
             frameWidth = newFrameWidth;
             frameHeightKill = newFrameHeightKill;
