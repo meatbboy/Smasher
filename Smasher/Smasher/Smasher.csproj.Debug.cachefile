@@ -1,5 +1,10 @@
 Content\Background.xnb
 Content\walk.xnb
 Content\kill.xnb
-Content\appear.xnb
 Content\mainmenu.xnb
+Content\about.xnb
+Content\gameover.xnb
+Content\aboutmenu.xnb
+Content\exit.xnb
+Content\newgame.xnb
+Content\pause.xnb

@@ -19,3 +19,9 @@ E:\MyProjects\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.csprojResolveAssembl
 E:\MyProjects\Smasher\Smasher\Smasher\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\MyProjects\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.exe
 E:\MyProjects\Smasher\Smasher\Smasher\obj\x86\Debug\Smasher.pdb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\about.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\gameover.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\aboutmenu.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\exit.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\newgame.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\pause.xnb

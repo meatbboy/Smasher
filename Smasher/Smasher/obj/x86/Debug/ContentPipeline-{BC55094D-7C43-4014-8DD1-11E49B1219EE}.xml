@@ -37,6 +37,60 @@
       <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\mainmenu.xnb</Output>
       <Time>2016-04-04T18:23:02.394238+03:00</Time>
     </Item>
+    <Item>
+      <Source>about.png</Source>
+      <Name>about</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\about.xnb</Output>
+      <Time>2016-05-11T18:01:56.3796234+03:00</Time>
+    </Item>
+    <Item>
+      <Source>gameover.png</Source>
+      <Name>gameover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\gameover.xnb</Output>
+      <Time>2014-06-03T13:42:13.729517+04:00</Time>
+    </Item>
+    <Item>
+      <Source>aboutmenu.png</Source>
+      <Name>aboutmenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\aboutmenu.xnb</Output>
+      <Time>2016-05-11T20:54:10.9219509+03:00</Time>
+    </Item>
+    <Item>
+      <Source>exit.png</Source>
+      <Name>exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\exit.xnb</Output>
+      <Time>2016-05-11T20:56:07.6998193+03:00</Time>
+    </Item>
+    <Item>
+      <Source>newgame.png</Source>
+      <Name>newgame</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\newgame.xnb</Output>
+      <Time>2016-05-11T20:52:57.187959+03:00</Time>
+    </Item>
+    <Item>
+      <Source>pause.png</Source>
+      <Name>pause</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\pause.xnb</Output>
+      <Time>2016-05-11T21:16:17.49963+03:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{BC55094D-7C43-4014-8DD1-11E49B1219EE}</ContentProjectGUID>

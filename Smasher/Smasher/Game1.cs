@@ -25,12 +25,30 @@ namespace Smasher
 
         private Texture2D mainMenu;
         private Rectangle mainRect;
+
+        private Texture2D pause;
+        private Rectangle pauseRect;
+
+        private Texture2D aboutMenu;
+        private Rectangle aboutRect;
+        private BoundingBox aboutBb;
+
+        private Texture2D aboutBtn;
+        private Rectangle aboutBtnRect;
+        private BoundingBox aboutBtnBb;
+
+        private Texture2D exit;
+        private Rectangle exitRect;
+        private BoundingBox exitBb;
+
+        private Texture2D newGame;
+        private Rectangle newGameRect;
+        private BoundingBox newGameBb;
          
         private Animation sprite;
         private Animation sprite1;
 
-        private bool menuState = true;
-        private BoundingBox menuBb;
+        private bool menuState, aboutState;
 
         private bool paused = false;
         private bool pauseKeyDown = false;
@@ -82,8 +100,29 @@ namespace Smasher
 
             mainMenu = Content.Load<Texture2D>("mainmenu");
             mainRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            menuBb.Min = new Vector3(0, 0, 0);
-            menuBb.Max = new Vector3(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 0);
+
+            pause = Content.Load<Texture2D>("pause");
+            pauseRect = new Rectangle(243, 150, pause.Width, pause.Height);
+
+            aboutMenu = Content.Load<Texture2D>("about");
+            aboutRect = new Rectangle(80, 180, aboutMenu.Width, aboutMenu.Height);
+            aboutBb.Min = new Vector3(0, 0, 0);
+            aboutBb.Max = new Vector3(0, 0, 0);            
+
+            aboutBtn = Content.Load<Texture2D>("aboutmenu");
+            aboutBtnRect = new Rectangle(170, 290, aboutBtn.Width, aboutBtn.Height);
+            aboutBtnBb.Min = new Vector3(aboutBtnRect.Left, aboutBtnRect.Top, 0);
+            aboutBtnBb.Max = new Vector3(aboutBtnRect.Right, aboutBtnRect.Bottom, 0);
+
+            exit = Content.Load<Texture2D>("exit");
+            exitRect = new Rectangle(170, 360, exit.Width, exit.Height);
+            exitBb.Min = new Vector3(exitRect.Left, exitRect.Top, 0);
+            exitBb.Max = new Vector3(exitRect.Right, exitRect.Bottom, 0);
+
+            newGame = Content.Load<Texture2D>("newgame");
+            newGameRect = new Rectangle(170, 220, newGame.Width, newGame.Height);
+            newGameBb.Min = new Vector3(newGameRect.Left, newGameRect.Top, 0);
+            newGameBb.Max = new Vector3(newGameRect.Right, newGameRect.Bottom, 0);
 
             sprite = new Animation(Content.Load<Texture2D>("walk"), Content.Load<Texture2D>("kill"), new Vector2(100, 200), 109, 70, 109, 165, 10, 3, 20);
             sprite1 = new Animation(Content.Load<Texture2D>("walk"), Content.Load<Texture2D>("kill"), new Vector2(100, 310), 109, 70, 109, 165, 30, 1, 20);
@@ -93,6 +132,8 @@ namespace Smasher
             isKill1 = false;
             isKillProc = false;
             isKillProc1 = false;
+            aboutState = false;
+            menuState = true;
         }
 
         /// <summary>
@@ -141,7 +182,39 @@ namespace Smasher
                     Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     Collision();
-                    if (bbMouse.Intersects(menuBb))
+
+                    if (bbMouse.Intersects(aboutBb))
+                    {
+                        aboutState = false;
+                        aboutBtnBb.Min = new Vector3(aboutBtnRect.Left, aboutBtnRect.Top, 0);
+                        aboutBtnBb.Max = new Vector3(aboutBtnRect.Right, aboutBtnRect.Bottom, 0);
+                        exitBb.Min = new Vector3(exitRect.Left, exitRect.Top, 0);
+                        exitBb.Max = new Vector3(exitRect.Right, exitRect.Bottom, 0);
+                        newGameBb.Min = new Vector3(newGameRect.Left, newGameRect.Top, 0);
+                        newGameBb.Max = new Vector3(newGameRect.Right, newGameRect.Bottom, 0);
+                    }
+
+                    if (bbMouse.Intersects(aboutBtnBb))
+                    {
+                        aboutState = true;
+                        aboutBtnBb.Min = new Vector3(0, 0, 0);
+                        aboutBtnBb.Max = new Vector3(0, 0, 0);
+                        exitBb.Min = new Vector3(0, 0, 0);
+                        exitBb.Max = new Vector3(0, 0, 0);
+                        newGameBb.Min = new Vector3(0, 0, 0);
+                        newGameBb.Max = new Vector3(0, 0, 0);
+
+                        aboutBb.Min = new Vector3(aboutRect.Left + 80, aboutRect.Top + 240, 0);
+                        aboutBb.Max = new Vector3(aboutRect.Right - 80, aboutRect.Bottom, 0);  
+                    }
+
+                    if (bbMouse.Intersects(exitBb))
+                    {
+                        Dispose();
+                        Exit();
+                    }
+
+                    if (bbMouse.Intersects(newGameBb))
                     {
                         menuState = false;
                     }
@@ -166,10 +239,23 @@ namespace Smasher
             {
                 DrawSprite();
             }
-            else
+
+            if (menuState)
             {
                 spriteBatch.Draw(mainMenu, mainRect, Color.White);
+                spriteBatch.Draw(aboutBtn, aboutBtnRect, Color.White);
+                spriteBatch.Draw(exit, exitRect, Color.White);
+                spriteBatch.Draw(newGame, newGameRect, Color.White);
             }
+
+            if (aboutState)
+            {
+                //spriteBatch.Draw(mainMenu, mainRect, Color.White);
+                spriteBatch.Draw(aboutMenu, aboutRect, Color.White);
+            }
+
+            if(paused)
+                spriteBatch.Draw(pause, pauseRect, Color.White);
 
             spriteBatch.End();
 
