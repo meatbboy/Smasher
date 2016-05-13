@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Smasher
 {
@@ -10,6 +11,7 @@ namespace Smasher
         /// </summary>
         static void Main(string[] args)
         {
+            
             using (Game1 game = new Game1())
             {
                 game.Run();

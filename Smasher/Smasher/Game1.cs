@@ -23,8 +23,8 @@ namespace Smasher
         private Texture2D background;
         private Rectangle mainFrame;
 
-        private Texture2D mainMenu;
-        private Rectangle mainRect;
+        private Texture2D mainMenu, gameOver;
+        private Rectangle mainRect, gameOverRect;
 
         private Texture2D pause;
         private Rectangle pauseRect;
@@ -63,6 +63,15 @@ namespace Smasher
         private int mouseY;
         private BoundingBox bbMouse;
 
+        private SpriteFont spriteFont;
+        private Vector2 fontPos;
+
+        private Texture2D hud, score;
+        private Rectangle hudRect, scoreRect, livesRect;
+        private int scoreInt;
+        public static int lives;
+        private bool gameoverState;
+
         Random random = new Random();
 
         public Game1()
@@ -98,11 +107,23 @@ namespace Smasher
             background = Content.Load<Texture2D>("Background");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+            spriteFont = Content.Load<SpriteFont>("font");
+            fontPos = new Vector2(110, 4);
+
+            hud = Content.Load<Texture2D>("hud");
+            hudRect = new Rectangle(-100, -30, hud.Width, hud.Height);
+
+            score = Content.Load<Texture2D>("scoremin");
+            scoreRect = new Rectangle(-50, -8, score.Width, score.Height);
+
             mainMenu = Content.Load<Texture2D>("mainmenu");
             mainRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+            gameOver = Content.Load<Texture2D>("gameover");
+            gameOverRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             pause = Content.Load<Texture2D>("pause");
-            pauseRect = new Rectangle(243, 150, pause.Width, pause.Height);
+            pauseRect = new Rectangle(235, 150, pause.Width, pause.Height);
 
             aboutMenu = Content.Load<Texture2D>("about");
             aboutRect = new Rectangle(80, 180, aboutMenu.Width, aboutMenu.Height);
@@ -134,6 +155,7 @@ namespace Smasher
             isKillProc1 = false;
             aboutState = false;
             menuState = true;
+            gameoverState = false;
         }
 
         /// <summary>
@@ -158,21 +180,83 @@ namespace Smasher
  
             if (menuState == false)
             {
-                Pause();
-                if (!paused)
+                if (!gameoverState)
                 {
-                    Kill(gameTime);
-
-                    lastMouseState = Mouse.GetState();
-
-                    if (isKill)
+                    Pause();
+                    if (!paused)
                     {
-                        UpdateKill(gameTime, sprite, ref isKillProc, ref isKill, -100, random.Next(50, 200));
+                        Kill(gameTime);
+
+                        lastMouseState = Mouse.GetState();
+
+                        if (isKill)
+                        {
+                            UpdateKill(gameTime, sprite, ref isKillProc, ref isKill, -100, random.Next(100, 200));
+                        }
+
+                        if (isKill1)
+                        {
+                            UpdateKill(gameTime, sprite1, ref isKillProc1, ref isKill1, -80, random.Next(320, 400));
+                        }
+
+                        if (lives == 0)
+                        {
+                            gameoverState = true;
+                            exitBb.Min = new Vector3(335, 270, 0);
+                            exitBb.Max = new Vector3(335 + exit.Width, 270 + exit.Height, 0);
+                            newGameBb.Min = new Vector3(335, 200, 0);
+                            newGameBb.Max = new Vector3(335 + newGame.Width, 200 + newGame.Height, 0);
+                        }
                     }
-
-                    if (isKill1)
+                    else
                     {
-                        UpdateKill(gameTime, sprite1, ref isKillProc1, ref isKill1, -80, random.Next(320, 400));
+                        exitBb.Min = new Vector3(335, 260, 0);
+                        exitBb.Max = new Vector3(335 + exit.Width, 260 + exit.Height, 0);
+                        newGameBb.Min = new Vector3(335, 190, 0);
+                        newGameBb.Max = new Vector3(335 + newGame.Width, 190 + newGame.Height, 0);
+                        if (lastMouseState.LeftButton == ButtonState.Released &&
+                        Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            Collision();
+
+                            if (bbMouse.Intersects(exitBb))
+                            {
+                                Dispose();
+                                Exit();
+                            }
+
+                            if (bbMouse.Intersects(newGameBb))
+                            {
+                                scoreInt = 0;
+                                lives = 3;
+                                paused = false;
+                                sprite.Position = new Vector2(random.Next(-150, -80), random.Next(100, 200));
+                                sprite1.Position = new Vector2(random.Next(-150, -80), random.Next(320, 400));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (lastMouseState.LeftButton == ButtonState.Released &&
+                        Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        Collision();
+
+                        if (bbMouse.Intersects(exitBb))
+                        {
+                            Dispose();
+                            Exit();
+                        }
+
+                        if (bbMouse.Intersects(newGameBb))
+                        {
+                            scoreInt = 0;
+                            lives = 3;
+                            gameoverState = false;
+                            sprite.Position = new Vector2(random.Next(-150, -80), random.Next(100, 200));
+                            sprite1.Position = new Vector2(random.Next(-150, -80), random.Next(320, 400));
+                        }
                     }
                 }
             }
@@ -205,7 +289,7 @@ namespace Smasher
                         newGameBb.Max = new Vector3(0, 0, 0);
 
                         aboutBb.Min = new Vector3(aboutRect.Left + 80, aboutRect.Top + 240, 0);
-                        aboutBb.Max = new Vector3(aboutRect.Right - 80, aboutRect.Bottom, 0);  
+                        aboutBb.Max = new Vector3(aboutRect.Right - 80, aboutRect.Bottom, 0);
                     }
 
                     if (bbMouse.Intersects(exitBb))
@@ -216,6 +300,8 @@ namespace Smasher
 
                     if (bbMouse.Intersects(newGameBb))
                     {
+                        scoreInt = 0;
+                        lives = 3;
                         menuState = false;
                     }
                 }
@@ -238,6 +324,39 @@ namespace Smasher
             if (!menuState)
             {
                 DrawSprite();
+                spriteBatch.Draw(hud, hudRect, Color.White);
+                spriteBatch.Draw(score, scoreRect, Color.White);
+                spriteBatch.DrawString(spriteFont, scoreInt.ToString(), fontPos, Color.DarkRed);
+                if (gameoverState)
+                {
+                    spriteBatch.Draw(gameOver, gameOverRect, Color.White);
+                    spriteBatch.Draw(exit, new Rectangle(335, 270, exit.Width, exit.Height), Color.White);
+                    spriteBatch.Draw(newGame, new Rectangle(335, 200, newGame.Width, newGame.Height), Color.White);
+                }
+                if (paused)
+                {
+                    spriteBatch.Draw(pause, pauseRect, Color.White);
+                    spriteBatch.Draw(exit, new Rectangle(335, 260, exit.Width, exit.Height), Color.White);
+                    spriteBatch.Draw(newGame, new Rectangle(335, 190, newGame.Width, newGame.Height), Color.White);
+                }
+                switch (lives)
+                {
+                    case 3:
+                    {
+                        spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(240, 8), Color.White);
+                        spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(270, 8), Color.White);
+                        spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(300, 8), Color.White);
+                    }
+                        break;
+                    case 2:
+                    {
+                        spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(240, 8), Color.White);
+                        spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(270, 8), Color.White);
+                    }
+                        break;
+                    case 1: spriteBatch.Draw(Content.Load<Texture2D>("heart"), new Vector2(240, 8), Color.White);
+                        break;
+                }
             }
 
             if (menuState)
@@ -250,12 +369,8 @@ namespace Smasher
 
             if (aboutState)
             {
-                //spriteBatch.Draw(mainMenu, mainRect, Color.White);
                 spriteBatch.Draw(aboutMenu, aboutRect, Color.White);
             }
-
-            if(paused)
-                spriteBatch.Draw(pause, pauseRect, Color.White);
 
             spriteBatch.End();
 
@@ -316,6 +431,7 @@ namespace Smasher
                 {
                     if (isKillProc == false)
                     {
+                        scoreInt += 10;
                         isKill = true;
                     }
                 }
@@ -323,6 +439,7 @@ namespace Smasher
                 {
                     if (isKillProc1 == false)
                     {
+                        scoreInt += 10;
                         isKill1 = true;
                     }
                 }

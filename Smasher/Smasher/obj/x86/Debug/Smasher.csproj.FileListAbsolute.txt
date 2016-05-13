@@ -25,3 +25,7 @@ E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\aboutmenu.xnb
 E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\exit.xnb
 E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\newgame.xnb
 E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\pause.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\font.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\hud.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\scoremin.xnb
+E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\heart.xnb

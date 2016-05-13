@@ -8,3 +8,7 @@ Content\aboutmenu.xnb
 Content\exit.xnb
 Content\newgame.xnb
 Content\pause.xnb
+Content\font.xnb
+Content\hud.xnb
+Content\scoremin.xnb
+Content\heart.xnb

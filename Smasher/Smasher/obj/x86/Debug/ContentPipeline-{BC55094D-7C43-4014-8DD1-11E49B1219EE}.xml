@@ -91,6 +91,42 @@
       <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\pause.xnb</Output>
       <Time>2016-05-11T21:16:17.49963+03:00</Time>
     </Item>
+    <Item>
+      <Source>font.bmp</Source>
+      <Name>font</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>FontTextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2016-05-13T17:19:08.8013307+03:00</Time>
+    </Item>
+    <Item>
+      <Source>hud.png</Source>
+      <Name>hud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\hud.xnb</Output>
+      <Time>2016-05-11T21:28:36.634913+03:00</Time>
+    </Item>
+    <Item>
+      <Source>scoremin.png</Source>
+      <Name>scoremin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\scoremin.xnb</Output>
+      <Time>2016-05-11T21:04:35.4115816+03:00</Time>
+    </Item>
+    <Item>
+      <Source>heart.png</Source>
+      <Name>heart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\MyProjects\Smasher\Smasher\Smasher\bin\x86\Debug\Content\heart.xnb</Output>
+      <Time>2016-05-13T21:04:32.0037785+03:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{BC55094D-7C43-4014-8DD1-11E49B1219EE}</ContentProjectGUID>

@@ -36,6 +36,8 @@ namespace Smasher
 
         private bool isWalk;
 
+        Random random = new Random();
+
         public bool IsWalk
         {
             get { return isWalk; }
@@ -120,10 +122,13 @@ namespace Smasher
 
         public void Move(GameTime gameTime)
         {
-            if(position.X < 700)
+            if (position.X < 900)
                 position.X += velocity;
             else
-                position.X = 100;
+            {
+                position.X = random.Next(-150, -80);
+                Game1.lives -= 1;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
